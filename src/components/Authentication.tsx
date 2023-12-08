@@ -7,14 +7,14 @@ import {
 import { auth } from "../firebase-config";
 
 const Authentication = () => {
-    const [registerEmail, setRegisterEmail] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
   const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {
-    // avoding null user
     if (currentUser) {
       setUser(currentUser);
     }
@@ -47,7 +47,7 @@ const Authentication = () => {
   return (
     <div>
       <h1>Register</h1>
-      <form className="pb-5">
+      <div className="pb-5">
         <div className="form-group">
           <input
             className="form-control"
@@ -71,16 +71,16 @@ const Authentication = () => {
         <button className="btn btn-danger" onClick={register}>
           Create User
         </button>
-      </form>
+      </div>
       <h1>Login</h1>
-      <form>
+      <div>
         <div className="form-group">
           <input
             className="form-control"
             placeholder="email"
             type="text"
             required
-            value={registerEmail}
+            value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
           />
         </div>
@@ -90,14 +90,15 @@ const Authentication = () => {
             placeholder="password"
             type="text"
             required
-            value={registerPassword}
+            value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
           />
         </div>
         <button className="btn btn-danger" onClick={login}>
           Login
         </button>
-      </form>
+      </div>
+      <h2>{user?.email}</h2>
     </div>
   );
 };
