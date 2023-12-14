@@ -98,7 +98,7 @@ const Authentication = () => {
           Login
         </button>
       </div>
-      <h2>{user?.email}</h2>
+      <h3 className="pt-3">{user?.email} is logged in</h3>
     </div>
   );
 };

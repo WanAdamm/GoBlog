@@ -1,16 +1,8 @@
 import { Link } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase-config";
-import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase-config";;
 
 const Navbar = () => {
-  const [user, setUser] = useState({});
-
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      setUser(currentUser);
-    }
-  });
 
   const logOut = async () => {
     await signOut(auth);
@@ -20,9 +12,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <h1>Go Blog</h1>
-      <div>
-        <p>{user?.email}</p>
-      </div>
       <button className="btn btn-danger" onClick={logOut}>
         Log Out
       </button>
